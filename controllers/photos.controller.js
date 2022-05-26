@@ -69,9 +69,7 @@ exports.vote = async (req, res) => {
       });
       await newVoter.save();
     } else {
-      const findVote = await findUser.votes.find(
-        (vote) => vote == photoToUpdate._id
-      );
+      const findVote = findUser.votes.includes(photoToUpdate._id);
       if (findVote) {
         res.status(500).json({ message: 'You have already voted' });
       } else {
